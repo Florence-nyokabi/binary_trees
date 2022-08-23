@@ -1,5 +1,5 @@
 #include "binart_trees.h"
-#include <stdlib.h>
+
 
 /**
  * binary_tree_t - creates a binary tree node.
