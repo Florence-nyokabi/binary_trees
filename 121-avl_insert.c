@@ -1,5 +1,7 @@
 #include "binary_trees.h"
 
+#include <stdlib.h>
+
 /**
  * avl_insert - insert a new node in a Binary Search Tree
  * @tree: a pointer to the first node
