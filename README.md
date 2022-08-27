@@ -197,7 +197,6 @@ alex@/tmp/binary_trees$ ./2-right
      (054)          (402)
 alex@/tmp/binary_trees$
 ```
-
 **Repo:**
 
    * GitHub repository: `binary_trees`
