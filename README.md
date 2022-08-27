@@ -145,8 +145,8 @@ alex@/tmp/binary_trees$
 
 **Repo:**
 
-    * GitHub repository: `binary_trees`
-    * File: `1-binary_tree_insert_left.c`
+   * GitHub repository: `binary_trees`
+   * File: `1-binary_tree_insert_left.c`
 
 
 
@@ -200,5 +200,5 @@ alex@/tmp/binary_trees$
 
 **Repo:**
 
-    * GitHub repository: `binary_trees`
-    * File: `2-binary_tree_insert_right.c`
+   * GitHub repository: `binary_trees`
+   * File: `2-binary_tree_insert_right.c`
