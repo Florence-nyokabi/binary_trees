@@ -206,9 +206,9 @@ alex@/tmp/binary_trees$
 
 Write a function that deletes an entire binary tree
 
-    * Prototype: `void binary_tree_delete(binary_tree_t *tree)`;
-    * Where `tree` is a pointer to the root node of the tree to delete
-    * If `tree` is `NULL`, do nothing
+   * Prototype: `void binary_tree_delete(binary_tree_t *tree)`;
+   * Where `tree` is a pointer to the root node of the tree to delete
+   * If `tree` is `NULL`, do nothing
 
 
 ```
@@ -259,17 +259,17 @@ alex@/tmp/binary_trees$
 
 **Repo:**
 
-    * GitHub repository: binary_trees
-    * File: 3-binary_tree_delete.c
+   * GitHub repository: `binary_trees`
+   * File: `3-binary_tree_delete.c`
     
 ## 4. Is leaf
 
 Write a function that checks if a node is a leaf
 
-    * Prototype: `int binary_tree_is_leaf(const binary_tree_t *node)`;
-    * Where `node` is a pointer to the node to check
-    * Your function must return `1` if `node` is a leaf, otherwise `0`
-    * If `node` is `NULL`, return `0`
+   * Prototype: `int binary_tree_is_leaf(const binary_tree_t *node)`;
+   * Where `node` is a pointer to the node to check
+   * Your function must return `1` if `node` is a leaf, otherwise `0`
+   * If `node` is `NULL`, return `0`
 
 ```
 alex@/tmp/binary_trees$ cat 4-main.c 
@@ -315,17 +315,17 @@ alex@/tmp/binary_trees$
 
 **Repo:**
 
-    * GitHub repository: `binary_trees`
-    * File: `4-binary_tree_is_leaf.c`
+   * GitHub repository: `binary_trees`
+   * File: `4-binary_tree_is_leaf.c`
     
 ## 5. Is root
 
 Write a function that checks if a given node is a root
 
-    * Prototype: `int binary_tree_is_root(const binary_tree_t *node)`;
-    * Where `node` is a pointer to the node to check
-    * Your function must return `1` if node is a root, otherwise `0`
-    * If `node` is `NULL`, return `0`
+   * Prototype: `int binary_tree_is_root(const binary_tree_t *node)`;
+   * Where `node` is a pointer to the node to check
+   * Your function must return `1` if node is a root, otherwise `0`
+   * If `node` is `NULL`, return `0`
 
 
 ```
@@ -372,17 +372,17 @@ alex@/tmp/binary_trees$
 
 **Repo:**
 
-    * GitHub repository: `binary_trees`
-    * File: `5-binary_tree_is_root.c`
+   * GitHub repository: `binary_trees`
+   * File: `5-binary_tree_is_root.c`
     
 ## 6. Pre-order traversal
 
 Write a function that goes through a binary tree using pre-order traversal
 
-    * Prototype: void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int));
-    * Where tree is a pointer to the root node of the tree to traverse
-    * And func is a pointer to a function to call for each node. The value in the node must be passed as a parameter to this function.
-    * If `tree` or `func` is `NULL`, do nothing
+   * Prototype: void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int));
+   * Where tree is a pointer to the root node of the tree to traverse
+   * And func is a pointer to a function to call for each node. The value in the node must be passed as a parameter to this function.
+   * If `tree` or `func` is `NULL`, do nothing
 
 ```
 alex@/tmp/binary_trees$ cat 6-main.c
@@ -438,17 +438,17 @@ alex@/tmp/binary_trees$
 
 **Repo:**
 
-    * GitHub repository: `binary_trees`
-    * File: `6-binary_tree_preorder.c`
+   * GitHub repository: `binary_trees`
+   * File: `6-binary_tree_preorder.c`
     
 ## 7. In-order traversal
 
 Write a function that goes through a binary tree using in-order traversal
 
-    * Prototype: `void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int))`;
-    * Where `tree` is a pointer to the root node of the tree to traverse
-    * And `func` is a pointer to a function to call for each node. The value in the node must be passed as a parameter to this function.
-    * If `tree` or `func` is `NULL`, do nothing
+   * Prototype: `void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int))`;
+   * Where `tree` is a pointer to the root node of the tree to traverse
+   * And `func` is a pointer to a function to call for each node. The value in the node must be passed as a parameter to this function.
+   * If `tree` or `func` is `NULL`, do nothing
 
 ```
 alex@/tmp/binary_trees$ cat 7-main.c
@@ -504,6 +504,5 @@ alex@/tmp/binary_trees$
 
 **Repo:**
 
-    * GitHub repository: `binary_trees`
-    * File: `7-binary_tree_inorder.c`
-
+   * GitHub repository: `binary_trees`
+   * File: `7-binary_tree_inorder.c`
