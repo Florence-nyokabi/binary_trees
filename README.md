@@ -684,3 +684,283 @@ alex@/tmp/binary_trees$
 
    * GitHub repository: `binary_trees`
    * File: `10-binary_tree_depth.c`
+
+## 11. Size
+
+Write a function that measures the size of a binary tree
+
+   * Prototype: `size_t binary_tree_size(const binary_tree_t *tree);`
+   * Where `tree` is a pointer to the root node of the tree to measure the size
+   * If `tree` is `NULL`, the function must return `0`
+
+```
+alex@/tmp/binary_trees$ cat 11-main.c 
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+    size_t size;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 402);
+    binary_tree_insert_right(root->left, 54);
+    binary_tree_insert_right(root, 128);
+    binary_tree_print(root);
+
+    size = binary_tree_size(root);
+    printf("Size of %d: %lu\n", root->n, size);
+    size = binary_tree_size(root->right);
+    printf("Size of %d: %lu\n", root->right->n, size);
+    size = binary_tree_size(root->left->right);
+    printf("Size of %d: %lu\n", root->left->right->n, size);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 11-binary_tree_size.c 11-main.c 0-binary_tree_node.c 2-binary_tree_insert_right.c -o 11-size
+alex@/tmp/binary_trees$ ./11-size 
+  .-------(098)--.
+(012)--.       (128)--.
+     (054)          (402)
+Size of 98: 5
+Size of 128: 2
+Size of 54: 1
+alex@/tmp/binary_trees$
+```
+**Repo:**
+
+   * GitHub repository: binary_trees
+   * File: 11-binary_tree_size.c
+    
+## 12. Leaves
+
+Write a function that counts the leaves in a binary tree
+
+   * Prototype: `size_t binary_tree_leaves(const binary_tree_t *tree);`
+   *  Where `tree` is a pointer to the root node of the tree to count the number of leaves
+   * If `tree` is `NULL`, the function must return `0`
+   * A `NULL` pointer is not a leaf
+
+```
+alex@/tmp/binary_trees$ cat 12-main.c 
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+    size_t leaves;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 402);
+    binary_tree_insert_right(root->left, 54);
+    binary_tree_insert_right(root, 128);
+    binary_tree_print(root);
+
+    leaves = binary_tree_leaves(root);
+    printf("Leaves in %d: %lu\n", root->n, leaves);
+    leaves = binary_tree_leaves(root->right);
+    printf("Leaves in %d: %lu\n", root->right->n, leaves);
+    leaves = binary_tree_leaves(root->left->right);
+    printf("Leaves in %d: %lu\n", root->left->right->n, leaves);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 12-binary_tree_leaves.c 12-main.c 0-binary_tree_node.c 2-binary_tree_insert_right.c -o 12-leaves
+alex@/tmp/binary_trees$ ./12-leaves 
+  .-------(098)--.
+(012)--.       (128)--.
+     (054)          (402)
+Leaves in 98: 2
+Leaves in 128: 1
+Leaves in 54: 1
+alex@/tmp/binary_trees$
+```
+**Repo:**
+
+   * GitHub repository: binary_trees
+   * File: 12-binary_tree_leaves.c
+    
+## 13. Nodes
+
+Write a function that counts the nodes with at least 1 child in a binary tree
+
+   * Prototype: `size_t binary_tree_nodes(const binary_tree_t *tree);`
+   * Where `tree` is a pointer to the root node of the tree to count the number of nodes
+   * If `tree` is `NULL`, the function must return `0`
+   * A `NULL` pointer is not a `node`
+
+```
+alex@/tmp/binary_trees$ cat 13-main.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+    size_t nodes;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 402);
+    binary_tree_insert_right(root->left, 54);
+    binary_tree_insert_right(root, 128);
+    binary_tree_print(root);
+
+    nodes = binary_tree_nodes(root);
+    printf("Nodes in %d: %lu\n", root->n, nodes);
+    nodes = binary_tree_nodes(root->right);
+    printf("Nodes in %d: %lu\n", root->right->n, nodes);
+    nodes = binary_tree_nodes(root->left->right);
+    printf("Nodes in %d: %lu\n", root->left->right->n, nodes);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 13-binary_tree_nodes.c 13-main.c 0-binary_tree_node.c 2-binary_tree_insert_right.c -o 13-nodes
+alex@/tmp/binary_trees$ ./13-nodes
+  .-------(098)--.
+(012)--.       (128)--.
+     (054)          (402)
+Nodes in 98: 3
+Nodes in 128: 1
+Nodes in 54: 0
+alex@/tmp/binary_trees$
+```
+
+**Repo:**
+   * GitHub repository: `binary_trees`
+   * File: `13-binary_tree_nodes.c`
+    
+## 14. Balance factor
+
+Write a function that measures the balance factor of a binary tree
+
+   * Prototype: `int binary_tree_balance(const binary_tree_t *tree);`
+   * Where `tree` is a pointer to the root node of the tree to measure the balance factor
+   * If `tree` is `NULL`, return `0`
+
+```
+alex@/tmp/binary_trees$ cat 14-main.c 
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+    int balance;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 402);
+    binary_tree_insert_right(root->left, 54);
+    binary_tree_insert_right(root, 128);
+    binary_tree_insert_left(root, 45);
+    binary_tree_insert_right(root->left, 50);
+    binary_tree_insert_left(root->left->left, 10);
+    binary_tree_insert_left(root->left->left->left, 8);
+    binary_tree_print(root);
+
+    balance = binary_tree_balance(root);
+    printf("Balance of %d: %+d\n", root->n, balance);
+    balance = binary_tree_balance(root->right);
+    printf("Balance of %d: %+d\n", root->right->n, balance);
+    balance = binary_tree_balance(root->left->left->right);
+    printf("Balance of %d: %+d\n", root->left->left->right->n, balance);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 14-binary_tree_balance.c 14-main.c 0-binary_tree_node.c 2-binary_tree_insert_right.c 1-binary_tree_insert_left.c -o 14-balance
+alex@/tmp/binary_trees$ ./14-balance
+                      .-------(098)--.
+            .-------(045)--.       (128)--.
+       .--(012)--.       (050)          (402)
+  .--(010)     (054)
+(008)
+Balance of 98: +2
+Balance of 128: -1
+Balance of 54: +0
+alex@/tmp/binary_trees$
+```
+
+**Repo:**
+   * GitHub repository: binary_trees
+   * File: 14-binary_tree_balance.c
+    
+## 15. Is full
+
+Write a function that checks if a binary tree is full
+
+   * Prototype: `int binary_tree_is_full(const binary_tree_t *tree);`
+   * Where `tree` is a pointer to the root node of the tree to check
+   * If `tree` is `NULL`, your function must return `0`
+
+```
+alex@/tmp/binary_trees$ cat 15-main.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+    int full;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 402);
+    binary_tree_insert_right(root->left, 54);
+    binary_tree_insert_right(root, 128);
+    root->left->left = binary_tree_node(root->left, 10);
+    binary_tree_print(root);
+
+    full = binary_tree_is_full(root);
+    printf("Is %d full: %d\n", root->n, full);
+    full = binary_tree_is_full(root->left);
+    printf("Is %d full: %d\n", root->left->n, full);
+    full = binary_tree_is_full(root->right);
+    printf("Is %d full: %d\n", root->right->n, full);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 15-binary_tree_is_full.c 15-main.c 0-binary_tree_node.c 2-binary_tree_insert_right.c -o 15-full
+alex@/tmp/binary_trees$ ./15-full
+       .-------(098)--.
+  .--(012)--.       (128)--.
+(010)     (054)          (402)
+Is 98 full: 0
+Is 12 full: 1
+Is 128 full: 0
+alex@/tmp/binary_trees$
+```
+
+**Repo:**
+
+   * GitHub repository: `binary_trees`
+   * File: `15-binary_tree_is_full.c`
