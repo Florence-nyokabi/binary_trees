@@ -736,8 +736,8 @@ alex@/tmp/binary_trees$
 ```
 **Repo:**
 
-   * GitHub repository: binary_trees
-   * File: 11-binary_tree_size.c
+   * GitHub repository: `binary_trees`
+   * File: `11-binary_tree_size.c`
     
 ## 12. Leaves
 
@@ -791,8 +791,8 @@ alex@/tmp/binary_trees$
 ```
 **Repo:**
 
-   * GitHub repository: binary_trees
-   * File: 12-binary_tree_leaves.c
+   * GitHub repository: `binary_trees`
+   * File: `12-binary_tree_leaves.c`
     
 ## 13. Nodes
 
@@ -906,8 +906,8 @@ alex@/tmp/binary_trees$
 ```
 
 **Repo:**
-   * GitHub repository: binary_trees
-   * File: 14-binary_tree_balance.c
+   * GitHub repository: `binary_trees`
+   * File: `14-binary_tree_balance.c`
     
 ## 15. Is full
 
