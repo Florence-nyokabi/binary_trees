@@ -1108,11 +1108,11 @@ alex@/tmp/binary_trees$
 
 Write a function that finds the uncle of a node
 
-    * Prototype: `binary_tree_t *binary_tree_uncle(binary_tree_t *node);`
-    * Where `node` is a pointer to the `node` to find the `uncle`
-    * Your function must `return` a `pointer` to the `uncle node`
-    * If `node` is NULL, return `NULL`
-    * If `node` has no `uncle`, return `NULL`
+   * Prototype: `binary_tree_t *binary_tree_uncle(binary_tree_t *node);`
+   * Where `node` is a pointer to the `node` to find the `uncle`
+   * Your function must `return` a `pointer` to the `uncle node`
+   * If `node` is NULL, return `NULL`
+   * If `node` has no `uncle`, return `NULL`
 
 ```
 alex@/tmp/binary_trees$ cat 18-main.c
@@ -1246,10 +1246,10 @@ alex@/tmp/binary_trees$
 
 Write a function that goes through a binary tree using level-order traversal
 
-    * Prototype: `void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));`
-    * Where `tree` is a pointer to the `root node` of the tree to `traverse`
-    * And ``func is a pointer to a function to call for each node. The value in the node must be passed as a parameter to this function.
-    * If `tree` or `func` is `NULL`, do nothing
+   * Prototype: `void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));`
+   * Where `tree` is a pointer to the `root node` of the tree to `traverse`
+   * And ``func is a pointer to a function to call for each node. The value in the node must be passed as a parameter to this function.
+   * If `tree` or `func` is `NULL`, do nothing
 
 ```
 alex@/tmp/binary_trees$ cat 101-main.c
