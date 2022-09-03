@@ -964,3 +964,361 @@ alex@/tmp/binary_trees$
 
    * GitHub repository: `binary_trees`
    * File: `15-binary_tree_is_full.c`
+
+## 16. Is perfect
+
+Write a function that checks if a binary tree is perfect
+
+  * Prototype: `int binary_tree_is_perfect(const binary_tree_t *tree);`
+  * Where `tree` is a pointer to the root node of the tree to check
+  * If `tree` is `NULL`, your function must return `0`
+
+```
+alex@/tmp/binary_trees$ cat 16-main.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+    int perfect;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 402);
+    binary_tree_insert_right(root->left, 54);
+    binary_tree_insert_right(root, 128);
+    root->left->left = binary_tree_node(root->left, 10);
+    root->right->left = binary_tree_node(root->right, 10);
+
+    binary_tree_print(root);
+    perfect = binary_tree_is_perfect(root);
+    printf("Perfect: %d\n\n", perfect);
+
+    root->right->right->left = binary_tree_node(root->right->right, 10);
+    binary_tree_print(root);
+    perfect = binary_tree_is_perfect(root);
+    printf("Perfect: %d\n\n", perfect);
+
+    root->right->right->right = binary_tree_node(root->right->right, 10);
+    binary_tree_print(root);
+    perfect = binary_tree_is_perfect(root);
+    printf("Perfect: %d\n", perfect);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 16-binary_tree_is_perfect.c 16-main.c 0-binary_tree_node.c 2-binary_tree_insert_right.c -o 16-perfect
+alex@/tmp/binary_trees$ ./16-perfect 
+       .-------(098)-------.
+  .--(012)--.         .--(128)--.
+(010)     (054)     (010)     (402)
+Perfect: 1
+
+       .-------(098)-------.
+  .--(012)--.         .--(128)-------.
+(010)     (054)     (010)       .--(402)
+                              (010)
+Perfect: 0
+
+       .-------(098)-------.
+  .--(012)--.         .--(128)-------.
+(010)     (054)     (010)       .--(402)--.
+                              (010)     (010)
+Perfect: 0
+alex@/tmp/binary_trees$
+```
+
+**Repo:**
+
+   * GitHub repository: `binary_trees`
+   * File: `16-binary_tree_is_perfect.c`
+    
+## 17. Sibling
+
+Write a function that finds the sibling of a node
+
+   * Prototype: `binary_tree_t *binary_tree_sibling(binary_tree_t *node);`
+   * Where `node` is a pointer to the `node` to find the `sibling`
+   * Your function must return a pointer to the `sibling node`
+   * If `node` is `NULL` or the parent is `NULL`, return `NULL`
+   * If `node` has no sibling, return `NULL`
+
+```
+alex@/tmp/binary_trees$ cat 17-main.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+    binary_tree_t *sibling;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 128);
+    root->left->right = binary_tree_node(root->left, 54);
+    root->right->right = binary_tree_node(root->right, 402);
+    root->left->left = binary_tree_node(root->left, 10);
+    root->right->left = binary_tree_node(root->right, 110);
+    root->right->right->left = binary_tree_node(root->right->right, 200);
+    root->right->right->right = binary_tree_node(root->right->right, 512);
+
+    binary_tree_print(root);
+    sibling = binary_tree_sibling(root->left);
+    printf("Sibling of %d: %d\n", root->left->n, sibling->n);
+    sibling = binary_tree_sibling(root->right->left);
+    printf("Sibling of %d: %d\n", root->right->left->n, sibling->n);
+    sibling = binary_tree_sibling(root->left->right);
+    printf("Sibling of %d: %d\n", root->left->right->n, sibling->n);
+    sibling = binary_tree_sibling(root);
+    printf("Sibling of %d: %p\n", root->n, (void *)sibling);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 17-main.c 17-binary_tree_sibling.c 0-binary_tree_node.c -o 17-sibling
+alex@/tmp/binary_trees$ ./17-sibling
+       .-------(098)-------.
+  .--(012)--.         .--(128)-------.
+(010)     (054)     (110)       .--(402)--.
+                              (200)     (512)
+Sibling of 12: 128
+Sibling of 110: 402
+Sibling of 54: 10
+Sibling of 98: (nil)
+alex@/tmp/binary_trees$
+```
+
+**Repo:**
+
+   * GitHub repository: `binary_trees`
+   * File: `17-binary_tree_sibling.c`
+    
+## 18. Uncle
+
+
+Write a function that finds the uncle of a node
+
+    * Prototype: `binary_tree_t *binary_tree_uncle(binary_tree_t *node);`
+    * Where `node` is a pointer to the `node` to find the `uncle`
+    * Your function must `return` a `pointer` to the `uncle node`
+    * If `node` is NULL, return `NULL`
+    * If `node` has no `uncle`, return `NULL`
+
+```
+alex@/tmp/binary_trees$ cat 18-main.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+    binary_tree_t *uncle;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 128);
+    root->left->right = binary_tree_node(root->left, 54);
+    root->right->right = binary_tree_node(root->right, 402);
+    root->left->left = binary_tree_node(root->left, 10);
+    root->right->left = binary_tree_node(root->right, 110);
+    root->right->right->left = binary_tree_node(root->right->right, 200);
+    root->right->right->right = binary_tree_node(root->right->right, 512);
+
+    binary_tree_print(root);
+    uncle = binary_tree_uncle(root->right->left);
+    printf("Uncle of %d: %d\n", root->right->left->n, uncle->n);
+    uncle = binary_tree_uncle(root->left->right);
+    printf("Uncle of %d: %d\n", root->left->right->n, uncle->n);
+    uncle = binary_tree_uncle(root->left);
+    printf("Uncle of %d: %p\n", root->left->n, (void *)uncle);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 18-main.c 18-binary_tree_uncle.c 0-binary_tree_node.c -o 18-uncle
+alex@/tmp/binary_trees$ ./18-uncle
+       .-------(098)-------.
+  .--(012)--.         .--(128)-------.
+(010)     (054)     (110)       .--(402)--.
+                              (200)     (512)
+Uncle of 110: 12
+Uncle of 54: 128
+Uncle of 12: (nil)
+alex@/tmp/binary_trees$
+```
+
+**Repo:**
+
+   * GitHub repository: `binary_trees`
+   * File: `18-binary_tree_uncle.c`
+    
+## 19. Lowest common ancestor
+
+Write a function that finds the lowest common ancestor of two nodes
+
+   * Prototype: `binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second);`
+   * Where `first` is a pointer to the `first node`
+   * And `second` is a pointer to the `second node`
+   * Your function must return a pointer to the `lowest common ancestor node` of the two given nodes
+   * If `no common ancestor` was found, your function must return `NULL`
+
+```
+alex@/tmp/binary_trees$ cat 100-main.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * launch_test - Test ancestor function and print informations
+ *
+ * @n1: First node
+ * @n2: Second node
+ */
+void launch_test(binary_tree_t *n1, binary_tree_t *n2)
+{
+    binary_tree_t *ancestor;
+
+    ancestor = binary_trees_ancestor(n1, n2);
+    printf("Ancestor of [%d] & [%d]: ", n1->n, n2->n);
+    if (!ancestor)
+        printf("(nil)\n");
+    else
+        printf("%d\n", ancestor->n);
+}
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 402);
+    root->left->right = binary_tree_node(root->left, 54);
+    root->right->right = binary_tree_node(root->right, 128);
+    root->left->left = binary_tree_node(root->left, 10);
+    root->right->left = binary_tree_node(root->right, 45);
+    root->right->right->left = binary_tree_node(root->right->right, 92);
+    root->right->right->right = binary_tree_node(root->right->right, 65);
+    binary_tree_print(root);
+
+    launch_test(root->left, root->right);
+    launch_test(root->right->left, root->right->right->right);
+    launch_test(root->right->right, root->right->right->right);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 100-main.c 100-binary_trees_ancestor.c 0-binary_tree_node.c -o 100-ancestor
+alex@/tmp/binary_trees$ ./100-ancestor
+       .-------(098)-------.
+  .--(012)--.         .--(402)-------.
+(010)     (054)     (045)       .--(128)--.
+                              (092)     (065)
+Ancestor of [12] & [402]: 98
+Ancestor of [45] & [65]: 402
+Ancestor of [128] & [65]: 128
+alex@/tmp/binary_trees$
+```
+
+**Repo:**
+
+   * GitHub repository: `binary_trees`
+   * File: `100-binary_trees_ancestor.c`
+    
+## 20. Level-order traversal
+
+Write a function that goes through a binary tree using level-order traversal
+
+    * Prototype: `void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));`
+    * Where `tree` is a pointer to the `root node` of the tree to `traverse`
+    * And ``func is a pointer to a function to call for each node. The value in the node must be passed as a parameter to this function.
+    * If `tree` or `func` is `NULL`, do nothing
+
+```
+alex@/tmp/binary_trees$ cat 101-main.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "binary_trees.h"
+
+/**
+ * print_num - Prints a number
+ *
+ * @n: Number to be printed
+ */
+void print_num(int n)
+{
+    printf("%d\n", n);
+}
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    binary_tree_t *root;
+
+    root = binary_tree_node(NULL, 98);
+    root->left = binary_tree_node(root, 12);
+    root->right = binary_tree_node(root, 402);
+    root->left->left = binary_tree_node(root->left, 6);
+    root->left->right = binary_tree_node(root->left, 56);
+    root->right->left = binary_tree_node(root->right, 256);
+    root->right->right = binary_tree_node(root->right, 512);
+
+    binary_tree_print(root);
+    binary_tree_levelorder(root, &print_num);
+    binary_tree_delete(root);
+    return (0);
+}
+alex@/tmp/binary_trees$ gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 101-main.c 101-binary_tree_levelorder.c 0-binary_tree_node.c 3-binary_tree_delete.c -o 101-lvl
+alex@/tmp/binary_trees$ valgrind ./101-lvl
+==23445== Memcheck, a memory error detector
+==23445== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==23445== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==23445== Command: ./101-lvl
+==23445== 
+       .-------(098)-------.
+  .--(012)--.         .--(402)--.
+(006)     (056)     (256)     (512)
+98
+12
+402
+6
+56
+256
+512
+==23445== 
+==23445== HEAP SUMMARY:
+==23445==     in use at exit: 0 bytes in 0 blocks
+==23445==   total heap usage: 19 allocs, 19 frees, 1,197 bytes allocated
+==23445== 
+==23445== All heap blocks were freed -- no leaks are possible
+==23445== 
+==23445== For counts of detected and suppressed errors, rerun with: -v
+==23445== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+alex@/tmp/binary_trees$
+```
+
+**Repo:**
+
+   * GitHub repository: `binary_trees`
+   * File: `101-binary_tree_levelorder.c`
